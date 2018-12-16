@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{F733319A-893D-17D7-71A2-CB3FD635FD31}</ProjectGuid>
+    <ProjectGuid>{AE80D13B-5022-A588-528E-A32C5E98441B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -61,11 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BoxDetection.cs" />
     <Compile Include="Assets\Scripts\BT\Actions\Chase.cs" />
-    <Compile Include="Assets\Scripts\BT\Actions\Other\FindNearestTarget.cs" />
-    <Compile Include="Assets\Scripts\BT\Actions\Other\MoveToTarget.cs" />
-    <Compile Include="Assets\Scripts\BT\Actions\Other\Mutate.cs" />
+    <Compile Include="Assets\Scripts\BT\Actions\Distraction.cs" />
     <Compile Include="Assets\Scripts\BT\Actions\Patrol\Patrol.cs" />
     <Compile Include="Assets\Scripts\BT\Actions\Patrol\TurnToPoint.cs" />
     <Compile Include="Assets\Scripts\BT\Actions\Patrol\Wait.cs" />
@@ -73,8 +70,6 @@
     <Compile Include="Assets\Scripts\BT\Actions\Suspicious\SuspiciousAlert.cs" />
     <Compile Include="Assets\Scripts\BT\AI\Agent.cs" />
     <Compile Include="Assets\Scripts\BT\AI\BTEnemy.cs" />
-    <Compile Include="Assets\Scripts\BT\AI\BTZombieInfection.cs" />
-    <Compile Include="Assets\Scripts\BT\AI\Enemy.cs" />
     <Compile Include="Assets\Scripts\BT\Bases\Action.cs" />
     <Compile Include="Assets\Scripts\BT\Bases\BehaviourTree.cs" />
     <Compile Include="Assets\Scripts\BT\Bases\Composite.cs" />
@@ -86,19 +81,29 @@
     <Compile Include="Assets\Scripts\BT\Composites\Selector.cs" />
     <Compile Include="Assets\Scripts\BT\Composites\Sequence.cs" />
     <Compile Include="Assets\Scripts\BT\Conditions\Detection.cs" />
-    <Compile Include="Assets\Scripts\BT\Conditions\Other\AmIInfected.cs" />
-    <Compile Include="Assets\Scripts\BT\Conditions\Other\HaveIArrived.cs" />
-    <Compile Include="Assets\Scripts\BT\Conditions\Other\WasIBitten.cs" />
     <Compile Include="Assets\Scripts\BT\Conditions\Seen.cs" />
     <Compile Include="Assets\Scripts\BT\Conditions\Suspicious.cs" />
     <Compile Include="Assets\Scripts\BT\Decorator\Inverter.cs" />
-    <Compile Include="Assets\Scripts\Other\ExtendedFlycam.cs" />
-    <Compile Include="Assets\Scripts\Other\SceneManager.cs" />
+    <Compile Include="Assets\Scripts\GOAP\Actions\Avoidance.cs" />
+    <Compile Include="Assets\Scripts\GOAP\Actions\GetKey.cs" />
+    <Compile Include="Assets\Scripts\GOAP\Actions\GetToExit.cs" />
+    <Compile Include="Assets\Scripts\GOAP\FSM\FSM.cs" />
+    <Compile Include="Assets\Scripts\GOAP\FSM\FSMState.cs" />
+    <Compile Include="Assets\Scripts\GOAP\GOAP\GoapAction.cs" />
+    <Compile Include="Assets\Scripts\GOAP\GOAP\GoapAgent.cs" />
+    <Compile Include="Assets\Scripts\GOAP\GOAP\GoapPlanner.cs" />
+    <Compile Include="Assets\Scripts\GOAP\GOAP\IGoap.cs" />
+    <Compile Include="Assets\Scripts\GOAP\Player.cs" />
+    <Compile Include="Assets\Scripts\GOAP\PlayerIGoap.cs" />
+    <Compile Include="Assets\Scripts\Other\BoxDetection.cs" />
+    <Compile Include="Assets\Scripts\Other\Distracted.cs" />
+    <Compile Include="Assets\Scripts\Other\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\PlayerSight.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>H:/Documents/University Work/University Work Year 3/Advanced AI/PatientZero/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>H:/Documents/University Work/University Work Year 3/AdvancedAI/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>H:/Documents/University Work/University Work Year 3/Advanced AI/PatientZero/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>H:/Documents/University Work/University Work Year 3/AdvancedAI/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>H:/Program Files (x86)/2018.1.9f2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

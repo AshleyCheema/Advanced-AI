@@ -10,6 +10,7 @@ public class BTEnemy : BehaviourTree
     private Sequence enemyCheck;
     private Sequence suspiciousSequence;
     private Sequence ChaseSequence;
+    private Sequence DistractionSequence;
 
     private Inverter checkInverter;
     private Parallel parallelDetection;
@@ -23,6 +24,7 @@ public class BTEnemy : BehaviourTree
     private Chase chase;
     private SuspiciousAlert suspiciousAlert;
     private MoveToLKP moveToLKP;
+    private Distraction distraction;
 
 	public BTEnemy(Agent ownerBrain) : base(ownerBrain)
     {
@@ -32,6 +34,7 @@ public class BTEnemy : BehaviourTree
         patrolSequence = new Sequence();
         suspiciousSequence = new Sequence();
         ChaseSequence = new Sequence();
+        DistractionSequence = new Sequence();
 
         parallelDetection = new Parallel();
         checkInverter = new Inverter();
@@ -41,6 +44,7 @@ public class BTEnemy : BehaviourTree
         wait = new Wait(GetOwner());
 
         detection = new Detection(GetOwner());
+        distraction = new Distraction(GetOwner());
 
         suspicious = new Suspicious(GetOwner());
         suspiciousAlert = new SuspiciousAlert(GetOwner());
@@ -53,7 +57,7 @@ public class BTEnemy : BehaviourTree
         rootSelector.AddChild(parallelDetection);
         parallelDetection.AddChild(checkInverter);
 
-        //A parallel to check for player
+        //A parallel to check for the player
         checkInverter.AddChild(detection);
 
         //Patrol alongside checking for the player
@@ -62,18 +66,25 @@ public class BTEnemy : BehaviourTree
         patrolSequence.AddChild(wait);
         patrolSequence.AddChild(turnToPoint);
 
-        //Root -> Check distance to chase
+        //Root -> Adding sequences
         rootSelector.AddChild(suspiciousSequence);
         rootSelector.AddChild(ChaseSequence);
+        rootSelector.AddChild(DistractionSequence);
 
-        //Go to suspicious state
+        //Distraction State
+        DistractionSequence.AddChild(distraction);
+        DistractionSequence.AddChild(wait);
+
+        //Suspicious state
         suspiciousSequence.AddChild(suspicious);
         suspiciousSequence.AddChild(suspiciousAlert);
         suspiciousSequence.AddChild(moveToLKP);
+        suspiciousSequence.AddChild(wait);
 
-        //Go to chase state
+        //Chase state
         ChaseSequence.AddChild(seen);
         ChaseSequence.AddChild(chase);
+        ChaseSequence.AddChild(wait);
 
     }
 

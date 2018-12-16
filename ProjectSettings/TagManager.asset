@@ -6,6 +6,9 @@ TagManager:
   tags:
   - VisionCone
   - Enemy
+  - Key
+  - Exit
+  - Distraction
   layers:
   - Default
   - TransparentFX

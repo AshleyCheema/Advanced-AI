@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Using the Unity NavMesh enemies would turn while moving
+/// To stop this state was created so they turn to face their next position before moving
+/// </summary>
 public class TurnToPoint : Action
 {
     private int currentWaypoint;

@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// If the player is close enough for the enemy to spot the player then the chase state will activate
+/// </summary>
 public class Chase : Action
 {
     private Vector3 LKP;
-    private float distanceLength = 2.0f;
+    private float distanceLength = 1.0f;
 
     public Chase(Agent ownerBrain) : base(ownerBrain)
     {
@@ -18,9 +20,9 @@ public class Chase : Action
     {
         GetOwner().GetNavMesh().SetDestination(GetOwner().LKPosition());
 
-		if(!GetOwner().playerSeen.canSeePlayer)
+        if (!GetOwner().playerSeen.canSeePlayer)
         {
-            return BEHAVIOUR_STATUS.FAILURE;
+            return BEHAVIOUR_STATUS.SUCCESS;
         }
 
         if(GetOwner().DistanceBetween() <= distanceLength)

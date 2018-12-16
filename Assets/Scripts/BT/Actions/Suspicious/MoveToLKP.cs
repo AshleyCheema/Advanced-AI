@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// The enemy will move to the spot where the player was last seen
+/// </summary>
 public class MoveToLKP : Action
 {
     private Vector3 LKP;
@@ -17,6 +19,7 @@ public class MoveToLKP : Action
 	// Update is called once per frame
 	public override BEHAVIOUR_STATUS Update ()
     {
+        //Takes the last time the player is spotted and moves towards the destination
         LKP = GetOwner().LKPosition();
 
         GetOwner().GetNavMesh().SetDestination(LKP);

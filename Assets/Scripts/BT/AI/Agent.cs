@@ -13,13 +13,13 @@ public class Agent : MonoBehaviour
     private SpriteRenderer questionMark;
     private SpriteRenderer exclamationMark;
     private float sphereAlert;
-    public bool alerted = false;
-    public LayerMask enemyLayer;
+    private bool alerted = false;
     private Vector3 LKP;
     private float distance;
     private float distanceBetween;
     private float timestamp;
-    public Blackboard blackboard;
+    private Blackboard blackboard;
+    private Distracted distracted;
 
     // Use this for initialization
     void Start()
@@ -27,9 +27,11 @@ public class Agent : MonoBehaviour
         behaviourTree = new BTEnemy(this);
         navAgent = gameObject.GetComponent<NavMeshAgent>();
         playerSeen = gameObject.GetComponentInChildren<BoxDetection>();
+        distracted = gameObject.GetComponentInChildren<Distracted>();
         questionMark = gameObject.transform.Find("Question Mark").GetComponent<SpriteRenderer>();
         exclamationMark = gameObject.transform.Find("Exclamation Mark").GetComponent<SpriteRenderer>();
         sphereAlert = gameObject.GetComponentInChildren<SphereCollider>().radius;
+        blackboard = gameObject.GetComponentInChildren<Blackboard>();
     }
 
     // Update is called once per frame
@@ -63,14 +65,10 @@ public class Agent : MonoBehaviour
         return sphereAlert;
     }
 
-    public void Alerted(bool isAlert)
+    public bool Alerted()
     {
-        alerted = isAlert;
-    }
-
-    public LayerMask EnemyLayer()
-    {
-        return enemyLayer;
+        alerted = Blackboard().GetPlayerSpotted();
+        return alerted;
     }
     
     public Vector3 LKPosition()
@@ -78,14 +76,19 @@ public class Agent : MonoBehaviour
        return LKP = playerSeen.HitPoint();
     }
 
-    public float SetTimestamp(float t_timestamp)
+    public Blackboard Blackboard()
     {
-        timestamp = t_timestamp;
-        return timestamp;
+        return blackboard;
+    }
+
+    public Distracted Distraction()
+    {
+        return distracted;
     }
 
     public float GetTimestamp()
     {
+        timestamp = Blackboard().GetTimeLastSeen();
         return timestamp;
     }
 
@@ -95,17 +98,5 @@ public class Agent : MonoBehaviour
         distanceBetween = Mathf.Abs(distance - Position().transform.forward.z);
 
         return distanceBetween;
-    }
-
-    private void isMarkActive()
-    {
-        if(QuestionMark().enabled == true)
-        {
-            ExclamationMark().enabled = false;
-        }
-        else if(ExclamationMark().enabled == true)
-        {
-            QuestionMark().enabled = false;
-        }
     }
 }

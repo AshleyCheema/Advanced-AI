@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// The Seen script checks the distance 
+/// If the player is close enough they will begin the chase
+/// </summary>
 public class Seen : Condition
 {
    //private float hitDistance;
@@ -18,14 +21,16 @@ public class Seen : Condition
     {
         //hitDistance = GetOwner().playerSeen.HitDistance();
         //distanceBetween = Mathf.Abs(hitDistance - GetOwner().Position().transform.forward.z);
-
-        if (GetOwner().DistanceBetween() <= distanceLength)
+        if (GetOwner().playerSeen.canSeePlayer)
         {
-            GetOwner().ExclamationMark().enabled = true;
-            Debug.Log("Seen Script");
-            return BEHAVIOUR_STATUS.SUCCESS;
+            if (GetOwner().DistanceBetween() <= distanceLength)
+            {
+                GetOwner().ExclamationMark().enabled = true;
+                GetOwner().QuestionMark().enabled = false;
+                Debug.Log("Seen Script");
+                return BEHAVIOUR_STATUS.SUCCESS;
+            }
         }
-
         return BEHAVIOUR_STATUS.FAILURE;
     }
 }
